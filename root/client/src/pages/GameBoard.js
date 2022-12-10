@@ -1,13 +1,15 @@
 import React from "react";
 import TicTacToe from "../components/game/TicTacToe";
-
+import GameLogicProvider, {
+  useGameLogicContext,
+} from "../context/GameLogicContext";
 import { useGameContext } from "../context/GameContext";
 const GameBoard = () => {
-  const { initGameModal, handleInitGameModal } = useGameContext();
-
+  const { initGameModal } = useGameContext();
+  const isConnected = useGameLogicContext();
   return (
-    <>{(initGameModal || <TicTacToe />)}
-      
+    <>
+      <GameLogicProvider>{initGameModal || <TicTacToe />}</GameLogicProvider>
     </>
   );
 };

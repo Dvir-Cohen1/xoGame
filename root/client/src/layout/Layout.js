@@ -4,7 +4,6 @@ import Header from "./Header";
 // import { useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import GameProvider from "../context/GameContext";
-import GameLogicProvider from "../context/GameLogicContext";
 
 const Layout = () => {
   // const location = useLocation();
@@ -13,13 +12,11 @@ const Layout = () => {
   return (
     <div id="app">
       <GameProvider>
-        <GameLogicProvider>
-          <Header />
-          <main>
-            <Outlet />
-          </main>
-          <Footer />
-        </GameLogicProvider>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
       </GameProvider>
     </div>
   );

@@ -1,9 +1,8 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { io } from "socket.io-client";
-const socket = io("http://localhost:3001", {
-
-});
+const socket = io("http://localhost:3001");
 
 const GameLogicContext = createContext();
 
@@ -11,13 +10,17 @@ export function useGameLogicContext() {
   return useContext(GameLogicContext);
 }
 
-socket.emit("connection", 'username');
+
 export default function GameLogicProvider({ children }) {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastPong, setLastPong] = useState(null);
+  console.log(isConnected)
+  const currentLocation = useLocation().pathname
 
+  
   useEffect(() => {
-
+    
+    socket.emit("new-connection", 'username');
 
     socket.on("connection", () => {
       setIsConnected(true);
@@ -44,7 +47,7 @@ export default function GameLogicProvider({ children }) {
 
   return (
     <GameLogicContext.Provider value={{ isConnected, lastPong, sendPing }}>
-      {console.log(isConnected, lastPong)}
+      {/* {console.log(isConnected, lastPong)} */}
       {children}
     </GameLogicContext.Provider>
   );

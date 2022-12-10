@@ -1,8 +1,7 @@
 import React from "react";
 import Layout from "./layout/Layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { IndexPage, GameBoard, Faq,Contact } from "./pages/index";
-
+import { IndexPage, GameBoard, Faq, Contact } from "./pages/index";
 
 const App = () => {
   return (

@@ -1,8 +1,7 @@
 import styles from "./TicTacToe.module.css";
 import { useEffect, useState } from "react";
-import  Button  from "../common/Button";
+import Button from "../common/Button";
 import { InfoAlert, SuccessAlert } from "../common/Alerts";
-
 
 const players = {
   CPU: {
@@ -112,10 +111,10 @@ export default function TicTacToe() {
     } else if (diagonal2.every((cell) => cell === players?.CPU?.SYM)) {
       setWinner(players?.CPU?.NAME);
       return;
-    } else if (diagonal2.every(cell => cell === players?.HUMAN?.SYM)) {
+    } else if (diagonal2.every((cell) => cell === players?.HUMAN?.SYM)) {
       setWinner(players?.HUMAN?.NAME);
       return;
-    } else if (board.flat().every(cell => cell !== "")) {
+    } else if (board.flat().every((cell) => cell !== "")) {
       setWinner("draw");
       return;
     } else {
@@ -134,9 +133,9 @@ export default function TicTacToe() {
 
   function displayTurn() {
     if (isCPUNext) {
-      return <InfoAlert message={'CPUs turn!'} />;
+      return <InfoAlert message={"CPUs turn!"} />;
     } else {
-      return <InfoAlert message={'Your Turn!'} />;
+      return <InfoAlert message={"Your Turn!"} />;
     }
   }
 
@@ -155,9 +154,12 @@ export default function TicTacToe() {
       <div>{!winner && displayTurn()}</div>
       {winner && <h2>{displayWinner()}</h2>}
       {winner && (
-
-          <Button className="px-5 py-2.5 mb-10 bg-gradient-to-r from-amber-500 to-amber-400 rounded-md duration-150 text-3xl" onClick={playAgainFn}>Play Again</Button>
-          
+        <Button
+          className="px-5 py-2.5 mb-10 bg-gradient-to-r from-amber-500 to-amber-400 rounded-md duration-150 text-3xl"
+          onClick={playAgainFn}
+        >
+          Play Again
+        </Button>
       )}
       <div className={styles.container}>
         <div className={styles.col}>
