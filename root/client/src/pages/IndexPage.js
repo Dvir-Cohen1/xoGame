@@ -1,8 +1,10 @@
 import React from "react";
-import Button from "../components/Button";
+import Button from "../components/common/Button";
 import { style, layout } from "../assets/css/styles";
+import { useGameContext } from "../context/GameContext";
 
 const IndexPage = () => {
+  const { initGameModal, handleInitGameModal } = useGameContext();
   return (
     <section id="hero-section">
       <div className="m-16 text-4xl" id="hero-title">
@@ -12,9 +14,13 @@ const IndexPage = () => {
           <span className="font-extrabold italic ">XO</span>GAME
         </span>
       </div>
-      <Button className={`${style.mainTransition}  ${style.mainButton} shadow-lg`}>
+      <Button
+      onClick={() => handleInitGameModal()}
+        className={`${style.mainTransition}  ${style.mainButton} shadow-lg`}
+      >
         PLAY
       </Button>
+      
     </section>
   );
 };

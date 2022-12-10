@@ -1,15 +1,20 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "../components/Button";
-import {style} from '../assets/css/styles'
+import Button from "../components/common/Button";
+import { style } from "../assets/css/styles";
+import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+
 const Contact = () => {
   return (
     <div>
-      <p className="text-3xl my-10">Contact Us</p>
+      <p className="text-3xl my-10">
+        <span className="bg-gray-400 rounded-full px-2.5 py-1 mr-3">
+          <ConnectWithoutContactIcon />
+        </span>
+        Contact Us
+      </p>
       <form className="flex flex-col">
         <div className="flex flex-col mb-5">
-          <lable for="name">Full Name</lable>
+          <p htmlFor="name">Full Name</p>
           <input
             type="text"
             id="name"
@@ -18,7 +23,7 @@ const Contact = () => {
           />
         </div>
         <div className="flex flex-col mb-5">
-          <lable for="email">Email</lable>
+          <p htmlFor="email">Email</p>
           <input
             type="email"
             id="email"
@@ -27,14 +32,16 @@ const Contact = () => {
           />
         </div>
         <div className="flex flex-col mb-5">
-          <lable for="message">Message</lable>
+          <p htmlFor="message">Message</p>
           <textarea
             className="form-input px-4 py-3 rounded-md text-gray-500"
             id="message"
             placeholder="John@Doe.com"
           ></textarea>
         </div>
-        <Button className={`${style.mainButton}`}>Send</Button>
+        <Button className={`${style.mainButton} ${style.mainTransition}`}>
+          Send
+        </Button>
       </form>
     </div>
   );

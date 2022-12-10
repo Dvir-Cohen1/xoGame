@@ -11,8 +11,8 @@
    }
    
    .cell {
-     width: 89px;
-     height: 89px;
+     width: 150px;
+     height: 150px;
      border: 1px solid lightgray;
      text-align: center;
      display: flex;
