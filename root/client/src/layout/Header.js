@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { navLinks } from "../constants/navLinks";
+import { useGameContext } from "../context/GameContext";
+import NewGameModal from "../components/NewGameModal";
+
 
 const Header = () => {
   const [state, setState] = useState(false);
   const navRef = useRef();
 
-  // Replace javascript:void(0) path with your path
-
+  // 
+  const { initGameModal, handleInitGameModal } = useGameContext();
 
   useEffect(() => {
     const body = document.body;
@@ -27,15 +30,13 @@ const Header = () => {
   }, [state]);
   return (
     <nav ref={navRef} className="w-full top-0 z-20">
+      <NewGameModal
+        initGameModal={initGameModal}
+        handleInitGameModal={handleInitGameModal}
+      />
       <div className="items-center px-4 max-w-screen-full mx-auto lg:flex lg:px-8">
         <div className="flex items-center justify-between py-3 lg:py-4 lg:block">
           <Link to="/">
-            {/* <img
-                            src="https://www.floatui.com/logo.svg" 
-                            width={120} 
-                            height={50}
-                            alt="Float UI logo"
-                        /> */}
             <span className="text-2xl">
               <span className="text-amber-500 font-bold">Xo</span>Game
             </span>
@@ -86,7 +87,7 @@ const Header = () => {
             <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
               <li className="mt-8 lg:mt-0">
                 <Link
-                  to="/gameboard"
+                  onClick={() => handleInitGameModal()}
                   className="py-3 px-4 text-center text-white bg-gradient-to-l from-orange-500 to-orange-400 hover:from-amber-600 hover:to-amber-500 hover:border-2 border-yellow-600 rounded-md shadow block lg:inline"
                 >
                   Play Now
@@ -98,7 +99,10 @@ const Header = () => {
             <ul className="justify-center items-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
               {navLinks.map((item, idx) => {
                 return (
-                  <li key={idx} className="text-gray-300 hover:text-indigo-600 font-semibold">
+                  <li
+                    key={idx}
+                    className="text-gray-300 hover:text-indigo-600 font-semibold"
+                  >
                     <Link to={item.path}>{item.title}</Link>
                   </li>
                 );
