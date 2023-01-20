@@ -46,11 +46,11 @@ export default function TicTacToe() {
     if (isCPUNext) {
       cPUPlay();
     }
-  }, []);
+  }, [isCPUNext]);
 
   function cPUPlay() {
     if (winner) return;
-    sleep(1000);
+    sleep(100);
 
     const cPUMove = getCPUTurn();
 

@@ -7,7 +7,7 @@ export function useGameContext() {
 }
 
 export default function GameProvider({ children }) {
-  const [initGameModal, setGameModal] = useState(false);
+  const [initGameModal, setGameModal] = useState(true);
 
   const handleInitGameModal = () => {
     setGameModal((prev) => !prev);

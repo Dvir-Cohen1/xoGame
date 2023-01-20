@@ -10,17 +10,13 @@ export function useGameLogicContext() {
   return useContext(GameLogicContext);
 }
 
-
 export default function GameLogicProvider({ children }) {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastPong, setLastPong] = useState(null);
-  console.log(isConnected)
-  const currentLocation = useLocation().pathname
+  const currentLocation = useLocation().pathname;
 
-  
   useEffect(() => {
-    
-    socket.emit("new-connection", 'username');
+    socket.emit("new-connection", "username");
 
     socket.on("connection", () => {
       setIsConnected(true);

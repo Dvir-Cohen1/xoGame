@@ -1,27 +1,40 @@
 import { Link } from "react-router-dom";
-import * as React from "react";
+import React, { useState } from "react";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import GroupIcon from "@mui/icons-material/Group";
 import ComputerIcon from "@mui/icons-material/Computer";
-
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { Redirect } from "react-router-dom";
 
 const NewGameModal = ({ initGameModal, handleInitGameModal }) => {
-  const [alignment, setAlignment] = React.useState("web");
+  const [alignment, setAlignment] = useState("web");
+
+  const [userName, setUserName] = useState("");
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setUserName(value);
+  };
+
+  const handleInputSubmit = (event) => {
+    console.log(initGameModal);
+    event.preventDefault();
+    // setCookies("username", userName);
+  };
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-  return initGameModal ? (
+  return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div
         className="fixed inset-0 w-full h-full bg-black opacity-40"
-        onClick={() => handleInitGameModal(false)}
+        // onClick={() => handleInitGameModal(false)}
       ></div>
       <div className="flex items-center min-h-screen px-4 py-8">
         <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-          <form>
+          <form onSubmit={handleInputSubmit}>
             <div className="mt-3">
               <div className="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
                 <VideogameAssetIcon color="success" />
@@ -60,10 +73,14 @@ const NewGameModal = ({ initGameModal, handleInitGameModal }) => {
                     @
                   </div>
                   <input
+                    minLength="3"
+                    maxLength="15"
+                    onChange={handleInputChange}
                     type="text"
                     required
                     placeholder="Sidi Dev"
                     id="username"
+                    name="username"
                     className="w-full p-2.5 ml-2 bg-transparent outline-none border-0"
                   />
                 </div>
@@ -72,27 +89,22 @@ const NewGameModal = ({ initGameModal, handleInitGameModal }) => {
 
             <div className="items-center gap-2 mt-3 sm:flex">
               <button
-                type="submit"
+                onClick={() => handleInitGameModal(false)}
                 className="w-full mt-2 p-2.5 flex-1 text-white bg-blue-600 rounded-md outline-none ring-offset-2 ring-blue-600 focus:ring-2"
-                onClick={() => {
-                  return;
-                }}
               >
                 Start Game
               </button>
-              <button
+              <Link
+                to={"/"}
                 className="w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2"
-                onClick={() => handleInitGameModal(false)}
               >
                 Cancel
-              </button>
+              </Link>
             </div>
           </form>
         </div>
       </div>
     </div>
-  ) : (
-    ""
   );
 };
 
