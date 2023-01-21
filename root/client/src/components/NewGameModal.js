@@ -6,17 +6,15 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useGameContext } from "../context/GameContext";
+import { gameModeOptions } from "../constants/gameConstants";
 
 const NewGameModal = () => {
-  const { setGameModal } = useGameContext();
+  const { setGameModal, gameMode, setGameMode } = useGameContext();
 
   const navigate = useNavigate();
 
   const [alignment, setAlignment] = useState("web");
   const [userName, setUserName] = useState("");
-
-  // Mode Selection
-  const [gameMode, setGameMode] = useState("");
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -67,14 +65,16 @@ const NewGameModal = () => {
                       aria-label="Platform"
                     >
                       <ToggleButton
-                        onClick={() => setGameMode("multiplayer")}
+                        onClick={() =>
+                          setGameMode(gameModeOptions.multiPlayerMode)
+                        }
                         size="large"
                         value="live"
                       >
                         <GroupIcon />
                       </ToggleButton>
                       <ToggleButton
-                        onClick={() => setGameMode("cpu")}
+                        onClick={() => setGameMode(gameModeOptions.cpuMode)}
                         size="large"
                         value="computer"
                       >
