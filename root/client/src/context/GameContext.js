@@ -6,7 +6,7 @@ export function useGameContext() {
   return useContext(GameContext);
 }
 
-export default function GameProvider({ children }) {
+export default function GameProvider(props) {
   const [initGameModal, setGameModal] = useState(true);
 
   const handleInitGameModal = () => {
@@ -14,8 +14,10 @@ export default function GameProvider({ children }) {
   };
 
   return (
-    <GameContext.Provider value={{ initGameModal, handleInitGameModal }}>
-      {children}
+    <GameContext.Provider
+      value={{ initGameModal, handleInitGameModal, setGameModal }}
+    >
+      {props.children}
     </GameContext.Provider>
   );
 }

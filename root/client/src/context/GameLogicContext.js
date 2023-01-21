@@ -10,32 +10,35 @@ export function useGameLogicContext() {
   return useContext(GameLogicContext);
 }
 
+
 export default function GameLogicProvider({ children }) {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastPong, setLastPong] = useState(null);
   const currentLocation = useLocation().pathname;
 
-  useEffect(() => {
-    socket.emit("new-connection", "username");
+  
 
-    socket.on("connection", () => {
-      setIsConnected(true);
-    });
+  // useEffect(() => {
+  //   socket.emit("new-connection", "username");
 
-    socket.on("disconnect", () => {
-      setIsConnected(false);
-    });
+  //   socket.on("connection", () => {
+  //     setIsConnected(true);
+  //   });
 
-    socket.on("pong", () => {
-      setLastPong(new Date().toISOString());
-    });
+  //   socket.on("disconnect", () => {
+  //     setIsConnected(false);
+  //   });
 
-    return () => {
-      socket.off("connect");
-      socket.off("disconnect");
-      socket.off("pong");
-    };
-  }, []);
+  //   socket.on("pong", () => {
+  //     setLastPong(new Date().toISOString());
+  //   });
+
+  //   return () => {
+  //     socket.off("connect");
+  //     socket.off("disconnect");
+  //     socket.off("pong");
+  //   };
+  // }, []);
 
   const sendPing = () => {
     socket.emit("ping");

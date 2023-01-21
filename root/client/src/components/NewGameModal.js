@@ -1,16 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import GroupIcon from "@mui/icons-material/Group";
 import ComputerIcon from "@mui/icons-material/Computer";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { Redirect } from "react-router-dom";
+import { useGameContext } from "../context/GameContext";
 
-const NewGameModal = ({ initGameModal, handleInitGameModal }) => {
+const NewGameModal = () => {
+  const { setGameModal } = useGameContext();
+
+  const navigate = useNavigate();
+
   const [alignment, setAlignment] = useState("web");
-
   const [userName, setUserName] = useState("");
+
+  // Mode Selection
+  const [gameMode, setGameMode] = useState("");
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -18,14 +24,16 @@ const NewGameModal = ({ initGameModal, handleInitGameModal }) => {
   };
 
   const handleInputSubmit = (event) => {
-    console.log(initGameModal);
     event.preventDefault();
-    // setCookies("username", userName);
+    setGameModal(false);
+    gameMode === "cpu" ? navigate("/gameboard") : navigate("/");
   };
 
+  // Handle button change
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div
@@ -58,10 +66,18 @@ const NewGameModal = ({ initGameModal, handleInitGameModal }) => {
                       onChange={handleChange}
                       aria-label="Platform"
                     >
-                      <ToggleButton size="large" value="live">
+                      <ToggleButton
+                        onClick={() => setGameMode("multiplayer")}
+                        size="large"
+                        value="live"
+                      >
                         <GroupIcon />
                       </ToggleButton>
-                      <ToggleButton size="large" value="computer">
+                      <ToggleButton
+                        onClick={() => setGameMode("cpu")}
+                        size="large"
+                        value="computer"
+                      >
                         <ComputerIcon />
                       </ToggleButton>
                     </ToggleButtonGroup>
@@ -89,17 +105,17 @@ const NewGameModal = ({ initGameModal, handleInitGameModal }) => {
 
             <div className="items-center gap-2 mt-3 sm:flex">
               <button
-                onClick={() => handleInitGameModal(false)}
+                type="submit"
                 className="w-full mt-2 p-2.5 flex-1 text-white bg-blue-600 rounded-md outline-none ring-offset-2 ring-blue-600 focus:ring-2"
               >
                 Start Game
               </button>
-              <Link
-                to={"/"}
+              <button
+                onClick={() => setGameModal(false)}
                 className="w-full mt-2 p-2.5 flex-1 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600 focus:ring-2"
               >
                 Cancel
-              </Link>
+              </button>
             </div>
           </form>
         </div>

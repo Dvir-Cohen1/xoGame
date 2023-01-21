@@ -1,4 +1,4 @@
-import styles from "./TicTacToe.module.css";
+import styles from "./TicTacToeVsCpu.module.css";
 import { useEffect, useState } from "react";
 import Button from "../common/Button";
 import { InfoAlert, SuccessAlert } from "../common/Alerts";
@@ -22,7 +22,7 @@ function sleep(milliseconds) {
   } while (currentDate - date < milliseconds);
 }
 
-export default function TicTacToe() {
+export default function TicTacToeVsCpu() {
   // const [board, setBoard] = useState(Array(9).fill(""));
   const [board, setBoard] = useState([
     ["", "", ""],
@@ -151,6 +151,7 @@ export default function TicTacToe() {
 
   return (
     <div>
+<button>Click</button>
       <div>{!winner && displayTurn()}</div>
       {winner && <h2>{displayWinner()}</h2>}
       {winner && (

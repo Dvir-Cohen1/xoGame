@@ -4,7 +4,7 @@ import { style, layout } from "../assets/css/styles";
 import { useGameContext } from "../context/GameContext";
 
 const IndexPage = () => {
-  const { initGameModal, handleInitGameModal } = useGameContext();
+  const {handleInitGameModal } = useGameContext();
   return (
     <section id="hero-section">
       <div className="m-16 text-4xl" id="hero-title">
@@ -15,12 +15,11 @@ const IndexPage = () => {
         </span>
       </div>
       <Button
-      onClick={() => handleInitGameModal()}
+        onClick={() => handleInitGameModal()}
         className={`${style.mainTransition}  ${style.mainButton} shadow-lg`}
       >
         PLAY
       </Button>
-      
     </section>
   );
 };
