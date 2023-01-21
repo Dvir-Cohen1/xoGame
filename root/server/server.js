@@ -25,15 +25,13 @@ io.on("connection", (socket) => {
     socketController.removeClient(socket);
   });
 
-  socket.emit("testf", () => {
-    // console.log(`🔥: A user disconnected ${socket.id}`);
-     ;
+
+  socket.emit("connected", () => {
+    console.log(`🔥: A user disconnected ${socket.id}`);
   });
 
-  socket.emit('test', {
-     message: 'seccess',
-     data: socketController.getPlayers()
-    });
+  socket.emit("countPlayersConnected", Number(socketController.CountPlayersConnected()),
+  );
 
   // socket.on("new-connection", (username) => {
   // users[socket.id] = username;

@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
 const TicTacToeMultiplayer = () => {
   return (
-    <div>TicTacToeMultiplayer</div>
-  )
-}
+    <div>
+      <h4 className="text-4xl">
+        <span className="text-amber-500 font-bold">Xo</span>Multiplayer
+      </h4>
 
-export default TicTacToeMultiplayer
+      Waiting for another player to join...
+    </div>
+  );
+};
+
+export default TicTacToeMultiplayer;

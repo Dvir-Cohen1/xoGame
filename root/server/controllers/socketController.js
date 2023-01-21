@@ -13,3 +13,7 @@ export function removeClient(socket) {
 export function getPlayers() {
   return players;
 }
+export function CountPlayersConnected() {
+  const countPlayer = Object.keys(players).length;
+  return countPlayer;
+}

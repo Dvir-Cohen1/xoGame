@@ -15,6 +15,7 @@ const NewGameModal = () => {
 
   const [alignment, setAlignment] = useState("web");
   const [userName, setUserName] = useState("");
+  const [handleGameMode, setHandleGameMode] = useState('');
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -24,7 +25,8 @@ const NewGameModal = () => {
   const handleInputSubmit = (event) => {
     event.preventDefault();
     setGameModal(false);
-    gameMode === "cpu" ? navigate("/gameboard") : navigate("/");
+    setGameMode(handleGameMode)
+    gameMode === "cpu" ? navigate("/gameboard") : navigate("/gameboard");
   };
 
   // Handle button change
@@ -66,7 +68,7 @@ const NewGameModal = () => {
                     >
                       <ToggleButton
                         onClick={() =>
-                          setGameMode(gameModeOptions.multiPlayerMode)
+                          setHandleGameMode(gameModeOptions.multiPlayerMode)
                         }
                         size="large"
                         value="live"
@@ -74,7 +76,7 @@ const NewGameModal = () => {
                         <GroupIcon />
                       </ToggleButton>
                       <ToggleButton
-                        onClick={() => setGameMode(gameModeOptions.cpuMode)}
+                        onClick={() => setHandleGameMode(gameModeOptions.cpuMode)}
                         size="large"
                         value="computer"
                       >

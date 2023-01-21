@@ -24,17 +24,20 @@ function sleep(milliseconds) {
 
 export default function TicTacToeVsCpu() {
   // const [board, setBoard] = useState(Array(9).fill(""));
+
   const [board, setBoard] = useState([
     ["", "", ""],
     ["", "", ""],
     ["", "", ""],
   ]);
+  const [score, setScore] = useState(0);
   const [isCPUNext, setIsCPUNext] = useState(false);
   const [winner, setWinner] = useState(null);
 
   function playFn(arrayIndex, index) {
     if (isCPUNext) return;
     if (winner) return;
+    if (board[arrayIndex][index] !== '') return
     board[arrayIndex][index] = players?.HUMAN?.SYM;
     setBoard((board) => [...board]);
     checkWinner();
@@ -79,7 +82,7 @@ export default function TicTacToeVsCpu() {
     for (let index = 0; index < board.length; index++) {
       const row = board[index];
       if (row.every((cell) => cell === players?.CPU?.SYM)) {
-        setWinner(players?.CPU?.NAME);
+        setWinner(players?.CPU?.NAME); 
         return;
       } else if (row.every((cell) => cell === players?.HUMAN?.SYM)) {
         setWinner(players?.HUMAN?.NAME);
@@ -151,7 +154,10 @@ export default function TicTacToeVsCpu() {
 
   return (
     <div>
-<button>Click</button>
+      <h4 className="text-4xl">
+        <span className="text-amber-500 font-bold">Xo</span>Vs<span className="font-bold text-blue-400">Cpu</span>
+      </h4>
+
       <div>{!winner && displayTurn()}</div>
       {winner && <h2>{displayWinner()}</h2>}
       {winner && (
@@ -162,6 +168,8 @@ export default function TicTacToeVsCpu() {
           Play Again
         </Button>
       )}
+
+      <h4 className="text-xl">Score: {score}</h4>
       <div className={styles.container}>
         <div className={styles.col}>
           <span onClick={() => playFn(0, 0)} className={styles.cell}>

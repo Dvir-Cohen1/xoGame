@@ -20,6 +20,8 @@ const IndexPage = () => {
       >
         PLAY
       </Button>
+
+
     </section>
   );
 };

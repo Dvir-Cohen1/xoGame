@@ -2,7 +2,7 @@ import React from "react";
 
 export function InfoAlert({ children, message }) {
   return (
-    <div className="mb-10 mt-12 mx-4 px-4 rounded-md bg-blue-50 md:max-w-2xl md:mx-auto">
+    <div className="mb-10 mt-12 mx-4 px-4 rounded-md border-l-4 border-blue-500 bg-blue-50/5 md:max-w-2xl md:mx-auto">
       <div className="flex justify-between py-3">
         <div className="flex">
           <div>
@@ -21,7 +21,7 @@ export function InfoAlert({ children, message }) {
           </div>
           <div className="self-center ml-3">
             <div className="text-blue-500">
-              <p className="text-blue-500 font-semibold">Info</p>
+              {/* <p className="text-blue-500 font-semibold">Info</p> */}
               <p className="mt-1">{message}</p>
             </div>
           </div>
@@ -33,7 +33,7 @@ export function InfoAlert({ children, message }) {
 }
 export function SuccessAlert({ children, message }) {
   return (
-    <div className="mb-10 mt-12 mx-4 px-4 rounded-md border-l-4 border-green-500 bg-green-50 md:max-w-2xl md:mx-auto">
+    <div className="mb-10 mt-12 mx-4 px-4 rounded-md border-l-4 border-green-500 bg-green-50/5 md:max-w-2xl md:mx-auto">
       <div className="flex justify-between py-3">
         <div className="flex">
           <div>
@@ -51,7 +51,7 @@ export function SuccessAlert({ children, message }) {
             </svg>
           </div>
           <div className="self-center ml-3">
-            <span className="text-green-600 font-semibold">Success</span>
+            {/* <span className="text-green-600 font-semibold">Success</span> */}
             <p className="text-green-600 mt-1">{message}</p>
           </div>
           {children}

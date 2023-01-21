@@ -10,7 +10,7 @@ const Header = () => {
   const navRef = useRef();
   const currentLocation = useLocation().pathname;
 
-  const { initGameModal, setGameModal } = useGameContext();
+  const { initGameModal, setGameModal,handleInitGameModal } = useGameContext();
 
   useEffect(() => {
     const body = document.body;
@@ -86,7 +86,7 @@ const Header = () => {
               <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
                 <li className="mt-8 lg:mt-0">
                   <button
-                    onClick={() => setGameModal(true)}
+                    onClick={() => handleInitGameModal()}
                     className="py-3 px-4 text-center text-white bg-gradient-to-l from-orange-500 to-orange-400 hover:from-amber-600 hover:to-amber-500 hover:border-2 border-yellow-600 rounded-md shadow block lg:inline"
                   >
                     {currentLocation === "/gameboard" ? "New Game" : "Play Now"}
